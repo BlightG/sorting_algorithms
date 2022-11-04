@@ -18,18 +18,27 @@ void insertion_sort_list(listint_t **list)
 	{
 		if(pointer->n > pointer->next->n)
 		{
+			printf("%d\n", pointer->n);
 			temp = pointer->next;
-			/*printf("%d", );*/
-			if (pointer->prev->next)
-				pointer->prev->next = temp;
 			pointer->next = temp->next;
-			temp->prev = pointer->prev;
-			pointer->prev = temp;
 			temp->next = pointer;
-			if (temp->prev)
+			if (pointer->prev)
+			{
+				pointer->prev->next = temp;
+				temp->prev = pointer->prev;
+				pointer->prev = temp;
+			}
+			else
+			{
+				temp->prev = NULL;
+				pointer->prev = temp;
+				*list = temp;
+			}
+			if(temp->prev != NULL && temp->prev->n > temp->n)
 				pointer = temp->prev;
 			else
 				pointer = temp;
+			/*printf("%d\n", pointer->n);*/
 			print_list(*list);
 		}
 		else
