@@ -5,7 +5,7 @@
 */
 void selection_sort(int *array, size_t size)
 {
-        size_t i, j;
+        size_t i, j, temploc;
         int min, temp;
 
         for(i = 0 ; i < size ; i++)
@@ -15,12 +15,14 @@ void selection_sort(int *array, size_t size)
                 {
                         if(min > array[j])
                         {
-                                temp = min;
                                 min = array[j];
-                                array[j] = temp;
+                                temploc = j;
                         }
                 }
-                array[i] = min;
+                temp = array[temploc];
+                array[temploc] = array[i];
+                array[i] = temp;
+
                 print_array(array, size);
         }
 }
