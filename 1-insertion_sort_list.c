@@ -6,11 +6,6 @@
 */
 void insertion_sort_list(listint_t **list)
 {
-	/**
-	 * 1. read the first Value.
-	 * 2. compare to the secnd value.
-	 * 3. if second is less move the value and chnge the pointer.
-	**/
 	listint_t *pointer, *temp;
 
 	pointer = *list;
@@ -47,5 +42,4 @@ void insertion_sort_list(listint_t **list)
 		else
 			pointer = pointer->next;
 	}
-
 }
