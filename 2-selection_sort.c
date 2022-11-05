@@ -8,7 +8,7 @@ void selection_sort(int *array, size_t size)
         size_t i, j, temploc;
         int min, temp;
 
-        for(i = 0 ; i < size ; i++)
+        for(i = 0 ; i < size - 1 ; i++)
         {
                 min = array[i];
                 for(j = i ; j < size ; j++)
