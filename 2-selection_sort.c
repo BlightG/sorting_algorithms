@@ -1,6 +1,6 @@
 #include "sort.h"
 /**
- * Selction_sort : an implementation of the selection sort alogrithm
+ * selction_sort : an implementation of the selection sort alogrithm
  *
  * @array: array of int tobe sorted
  * @size: size of int array
