@@ -9,9 +9,9 @@ void insertion_sort_list(listint_t **list)
 	listint_t *pointer, *temp;
 
 	pointer = *list;
-	while(pointer->next)
+	while (pointer->next)
 	{
-		if(pointer->n > pointer->next->n)
+		if (pointer->n > pointer->next->n)
 		{
 			temp = pointer->next;
 			pointer->next = temp->next;
@@ -33,7 +33,7 @@ void insertion_sort_list(listint_t **list)
 				*list = temp;
 			}
 
-			if(temp->prev != NULL && temp->prev->n > temp->n)
+			if (temp->prev != NULL && temp->prev->n > temp->n)
 				pointer = temp->prev;
 			else
 				pointer = temp;

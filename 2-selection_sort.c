@@ -1,7 +1,9 @@
 #include "sort.h"
 /**
+ * Selction_sort : an implementation of the selection sort alogrithm
  *
- *
+ * @array: array of int tobe sorted
+ * @size: size of int array
 */
 void selection_sort(int *array, size_t size)
 {
@@ -9,20 +11,20 @@ void selection_sort(int *array, size_t size)
 	int min, temp, flag;
 
 	flag = 0;
-	for(i = 0 ; i < size ; i++)
+	for (i = 0 ; i < size ; i++)
 	{
 		min = array[i];
 
-		for(j = i ; j < size ; j++)
+		for (j = i ; j < size ; j++)
 		{
-			if(min > array[j])
+			if (min > array[j])
 			{
 				min = array[j];
 				temploc = j;
 				flag = 1;
 			}
 		}
-		if(flag == 1)
+		if (flag == 1)
 		{
 			temp = array[temploc];
 			array[temploc] = array[i];
