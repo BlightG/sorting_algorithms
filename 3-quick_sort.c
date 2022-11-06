@@ -2,7 +2,7 @@
 void partition(int *, size_t, size_t, size_t);
 void swap(int *, size_t, size_t);
 /**
- * partiton - partions the array into either sides of the pivot
+ * partition - partions the array into either sides of the pivot
  *
  * @array: array to be sorted
  * @start: start of the partioned array
@@ -49,7 +49,7 @@ void swap(int *array, size_t i, size_t pindex)
 	array[pindex] = temp;
 }
 /**
- * quick_sort: sorts  an int array using the Lumoto partions scheme
+ * quick_sort - sorts  an int array using the Lumoto partions scheme
  *
  * @array:  int array to be sorted
  * @size: size of array to be sorted
