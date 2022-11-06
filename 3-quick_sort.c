@@ -26,13 +26,9 @@ void quick_sort(int *array, size_t size)
         pivot = array[size - 1];
         for(i = 0 ; i < size - 1 ; i++)
         {
-                printf("here");
                 if (array[i] > pivot)
                 {
                         swap(array, i, pindex);
-                        array[i] = temp;
-                        array[i] = array[pindex];
-                        array[pindex] = temp;
                         pindex++;
                 }
         }
