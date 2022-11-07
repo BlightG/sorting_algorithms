@@ -42,11 +42,13 @@ void partition(int *array, size_t start, size_t end, size_t size)
 void swap(int *array, size_t i, size_t pindex, size_t size)
 {
 	int temp;
-
-	temp = array[i];
-	array[i] = array[pindex];
-	array[pindex] = temp;
-	print_array(array, size);
+	if( pindex != i)
+	{
+		temp = array[i];
+		array[i] = array[pindex];
+		array[pindex] = temp;
+		print_array(array, size);
+	}
 }
 /**
  * quick_sort - sorts  an int array using the Lumoto partions scheme
