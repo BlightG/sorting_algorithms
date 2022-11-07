@@ -23,11 +23,11 @@ void partition(int *array, size_t start, size_t end, size_t size)
 			if (array[i] < pivot)
 			{
 				swap(array, i, pindex);
+				print_array(array, size);
 				pindex++;
 			}
 		}
 		swap(array, end, pindex);
-		print_array(array, size);
 		if (pindex >= 1)
 			partition(array, start, pindex - 1, size);
 		partition(array, pindex + 1, end, size);
