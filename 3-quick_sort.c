@@ -1,6 +1,6 @@
 #include "sort.h"
 void partition(int *, size_t, size_t, size_t);
-void swap(int *, size_t, size_t);
+void swap(int *, size_t, size_t, size_t);
 /**
  * partition - partions the array into either sides of the pivot
  *
@@ -22,12 +22,11 @@ void partition(int *array, size_t start, size_t end, size_t size)
 		{
 			if (array[i] < pivot)
 			{
-				swap(array, i, pindex);
-				print_array(array, size);
+				swap(array, i, pindex, size);
 				pindex++;
 			}
 		}
-		swap(array, end, pindex);
+		swap(array, end, pindex, size);
 		if (pindex >= 1)
 			partition(array, start, pindex - 1, size);
 		partition(array, pindex + 1, end, size);
@@ -40,13 +39,14 @@ void partition(int *array, size_t start, size_t end, size_t size)
  * @i: poistion to be moved from
  * @pindex: position to be moved to
 */
-void swap(int *array, size_t i, size_t pindex)
+void swap(int *array, size_t i, size_t pindex, size_t size)
 {
 	int temp;
 
 	temp = array[i];
 	array[i] = array[pindex];
 	array[pindex] = temp;
+	print_array(array, size);
 }
 /**
  * quick_sort - sorts  an int array using the Lumoto partions scheme
