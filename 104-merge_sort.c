@@ -1,56 +1,99 @@
 #include "sort.h"
-void splitleft(int *, size_t);
-void splitright(int *, size_t , size_t);
+int * split(int *array, size_t size);
+int* merge(int *array, int* left, int* right, size_t lsize, size_t rsize);
 /**
- * 
+ *
 */
 void merge_sort(int *array, size_t size)
 {
-	if (size > 0)
+	/*int *div;*/
+	split(array , size);
+	/*print_array(div, size / 2 + 1);
+	free(div);*/
+}
+int* split(int *array, size_t size)
+{
+	int *left, *right;
+	size_t i, j, rsize, lsize;
+
+	if (size < 2)
+		return (NULL);
+
+	rsize = size / 2;
+	if (size % 2 == 0)
+		lsize = size / 2;
+	else
+		lsize = size / 2 + 1;
+
+	left = malloc(sizeof(int) * lsize);
+	if(!left)
+		return(NULL);
+	right = malloc(sizeof(int) * rsize);
+	if (!right)
 	{
-		if (size % 2 == 0)
+		free(left);
+		return(NULL);
+	}
+
+	for (i = 0 ; i < lsize; i++)
+		left[i] = array[i];
+
+	for (j = 0 , i = lsize ; j < rsize; j++, i++)
+		right[j] = array[i];
+
+	split(left, lsize);
+	split(right, rsize);
+
+	merge(array, left, right, lsize, rsize);
+
+	free(right);
+	free(left);
+	return (NULL);
+}
+
+int* merge(int *array, int* left, int* right, size_t lsize, size_t rsize)
+{
+	size_t i, j, k;
+
+	k = i = j = 0;
+	if (array == NULL || left == NULL || right == NULL)
+		return (NULL);
+	if (rsize < 1 || lsize < 1)
+		return (NULL);
+
+	while(i < lsize && j < rsize)
+	{
+		if(left[i] <= right[j])
 		{
-			splitleft(array, size/2);
-			splitright(array, size, size/2);
+			array[k] = left[i];
+			k++;
+			i++;
 		}
 		else
 		{
-			splitleft(array, (size / 2) + 1);
-			splitright(array, size, size/2);
+			array[k] = right[j];
+			k++;
+			j++;
 		}
 	}
-}
-void splitleft(int *array, size_t pointer)
-{
-	if (pointer > 1)
+	while(i < lsize)
 	{
-		if(pointer % 2 == 0)
-			splitleft(array, pointer/2);
-		else
-			splitleft(array, (pointer / 2) + 1);
-		printf("pointer = %d\n", (int) pointer);
-		print_array(array, pointer);
+		array[k] = left[i];
+		k++;
+		i++;
 	}
-	else if(pointer == 1)
+	while(j < rsize)
 	{
-		printf("pointer = %d\n", (int) pointer);
-		print_array(array, pointer);
+		array[k] = right[j];
+		k++;
+		j++;
 	}
-}
-void splitright(int *array, size_t size, size_t pointer)
-{
-	if (pointer > 1)
-	{
-		if(pointer % 2 == 0)
-			splitright(array, size, pointer/2);
-		else
-			splitright(array, size, (pointer / 2));
-		printf("pointer = %d\n", (int) pointer);
-		print_array(array + (size - pointer), pointer);
-	}
-	else if(pointer == 1)
-	{
-		printf("pointer = %d\n", (int) pointer);
-		print_array(array + (size - pointer), pointer);
-	}
+
+	printf("Merging...\n[left]: ");
+	print_array(left, lsize);
+	printf("[right]: ");
+	print_array(right, rsize);
+	printf("[Done]: ");
+	print_array(array, lsize + rsize);
+	return(array);
 }
