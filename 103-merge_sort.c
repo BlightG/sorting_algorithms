@@ -2,7 +2,7 @@
 int * split(int *array, size_t size);
 int* merge(int *array, int* left, int* right, size_t lsize, size_t rsize);
 /**
- * 
+ *
 */
 void merge_sort(int *array, size_t size)
 {
@@ -21,13 +21,13 @@ int* split(int *array, size_t size)
 
         rsize = size / 2;
 	if (size % 2 == 0)
-                lsize = size / 2;        
+                lsize = size / 2;
 	else
                 lsize = size / 2 + 1;
 
         left = malloc(sizeof(int) * lsize);
         if(!left)
-                return(NULL);  
+                return(NULL);
         right = malloc(sizeof(int) * rsize);
         if (!right)
         {
@@ -41,13 +41,11 @@ int* split(int *array, size_t size)
         for (j = 0 , i = lsize ; j < rsize; j++, i++)
 		right[j] = array[i];
 
-        print_array(left, lsize);
-        print_array(right, rsize);
-
         split(left, lsize);
-        split(right, rsize);
+	split(right, rsize);
+	merge(array, left, right, lsize, rsize);
 
-        merge(array, left, right, lsize, rsize);
+	
 	free(right);
 	free(left);
 	return (NULL);
@@ -92,5 +90,11 @@ int* merge(int *array, int* left, int* right, size_t lsize, size_t rsize)
                 j++;
         }
 
+        printf("Merging...\n[left]: ");
+        print_array(left, lsize);
+        printf("[right]: ");
+        print_array(right, rsize);
+        printf("[Done]: ");
+        print_array(array, lsize + rsize);
         return(array);
 }
