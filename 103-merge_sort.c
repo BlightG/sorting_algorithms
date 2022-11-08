@@ -87,9 +87,9 @@ int* merge(int *array, int* left, int* right, size_t lsize, size_t rsize)
         }
         while(j < rsize)
         {
-                array[k] = left[i];
+                array[k] = right[j];
                 k++;
-                i++;
+                j++;
         }
 
         return(array);
