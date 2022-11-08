@@ -16,7 +16,7 @@ int* split(int *array, size_t start, size_t end)
 	int *left, *right;
 	size_t i, j, mid;
 
-	if (end - start < 1)
+	if (start >= end)
 		return (NULL);
 
 	mid = (end - start) / 2;
@@ -28,7 +28,7 @@ int* split(int *array, size_t start, size_t end)
 	left = malloc(sizeof(int) * (mid - start));
 	if(!left)
 		return(NULL);
-	right = malloc(sizeof(int) * (end - (mid + 1) ));
+	right = malloc(sizeof(int) * (end - mid));
 	if (!right)
 	{
 		free(left);
