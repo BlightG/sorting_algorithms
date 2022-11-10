@@ -38,11 +38,12 @@ void partition(int *array, size_t start, size_t end, size_t size)
  * @array: array whose  elements are to be manipulated
  * @i: poistion to be moved from
  * @pindex: position to be moved to
+ * @size: size of @array
 */
 void swap(int *array, size_t i, size_t pindex, size_t size)
 {
 	int temp;
-	if( pindex != i)
+	if(pindex != i)
 	{
 		temp = array[i];
 		array[i] = array[pindex];
@@ -58,9 +59,21 @@ void swap(int *array, size_t i, size_t pindex, size_t size)
 */
 void quick_sort(int *array, size_t size)
 {
-	size_t start, end;
+	size_t i, start, end;
+	int flag = 0;
 
-	start = 0;
-	end = size - 1;
-	partition(array, start, end, size);
+	i = 0 ;
+	while (i < size && size != 0)
+	{
+		if (array[i] > array[i + 1])
+			flag = 1;
+		i++;
+	}
+
+	if (array != NULL || size !=0 || flag != 0)
+	{
+		start = 0;
+		end = size - 1;
+		partition(array, start, end, size);
+	}
 }

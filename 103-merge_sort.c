@@ -13,87 +13,39 @@ void merge_sort(int *array, size_t size)
 }
 int* split(int *array, size_t start, size_t end)
 {
-	int *left, *right;
-	size_t i, j, mid;
+	size_t mid, i, j;
+	int *temp;
 
-	if (start >= end)
+	if (end <= start)
 		return (NULL);
+	
+	mid = (end + start) / 2;
 
-	mid = (end - start) / 2;
-/*	if (size % 2 == 0)
-		lsize = size / 2;
+	temp = malloc(sizeof(int) * (end - start));
+	if ((end - start) % 2 == 0)
+	{
+		split(array, start, mid);
+		split(array, mid + 1, end);
+		printf("start = %d, mid = %d end = %d\n", (int) start, (int) mid, (int) end);
+		/*print_array(array + start , mid - start);
+		print_array(array + mid, mid - start);*/
+		
+	}
 	else
-		lsize = size / 2 + 1;*/
-
-	left = malloc(sizeof(int) * (mid - start));
-	if(!left)
-		return(NULL);
-	right = malloc(sizeof(int) * (end - mid));
-	if (!right)
 	{
-		free(left);
-		return(NULL);
+		split(array, start, mid + 1);
+		split(array, mid, end);
+		printf("start = %d, mid = %d end = %d\n", (int) start, (int) mid, (int) end);
+		/*print_array(array + start, mid - start + 1);
+		print_array(array + mid + 1, mid - start);*/
+	}
+	
+	for (i = 0 , j = start ; i < (end - start) ; j++, i++)
+	{
+		temp[i] = array[j];
 	}
 
-	for (i = start ; i < mid ; i++)
-		left[i] = array[i];
-
-	for (j = 0 , i = mid + 1 ; j < end; j++, i++)
-		right[j] = array[i];
-
-	split(array, start, mid);
-	split(right, mid + 1, end);
-
-	merge(array, left, right, mid - start, end - (mid + 1) );
-
-	free(right);
-	free(left);
+	print_array(temp, end - start);
+	free(temp);
 	return (NULL);
-}
-
-int* merge(int *array, int* left, int* right, size_t lsize, size_t rsize)
-{
-	size_t i, j, k;
-
-	k = i = j = 0;
-	if (array == NULL || left == NULL || right == NULL)
-		return (NULL);
-	if (rsize < 1 || lsize < 1)
-		return (NULL);
-
-	while(i < lsize && j < rsize)
-	{
-		if(left[i] <= right[j])
-		{
-			array[k] = left[i];
-			k++;
-			i++;
-		}
-		else
-		{
-			array[k] = right[j];
-			k++;
-			j++;
-		}
-	}
-	while(i < lsize)
-	{
-		array[k] = left[i];
-		k++;
-		i++;
-	}
-	while(j < rsize)
-	{
-		array[k] = right[j];
-		k++;
-		j++;
-	}
-
-	printf("Merging...\n[left]: ");
-	print_array(left, lsize);
-	printf("[right]: ");
-	print_array(right, rsize);
-	printf("[Done]: ");
-	print_array(array, lsize + rsize);
-	return(array);
 }

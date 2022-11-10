@@ -77,7 +77,7 @@ void move_backward(listint_t **list, listint_t **newpointer)
 	listint_t *temp, *pointer;
 
 	pointer = *newpointer;
-	while (pointer->prev)
+	while (pointer->prev != NULL && pointer != NULL)
 	{
 		if (pointer->prev->n > pointer->n)
 		{
