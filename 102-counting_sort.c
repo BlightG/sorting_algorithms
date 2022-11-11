@@ -11,36 +11,39 @@ void counting_sort(int *array, size_t size)
 	int max, temp;
 	int *counting;
 
-	max = array[0];
-	for (i = 0 ; i < size ; i++)
+	if (array != NULL && size > 1)
 	{
-		if (array[i] > max)
-			max = array[i];
-	}
-
-	counting = malloc(sizeof(int) * (max + 1));
-	if (!counting)
-		exit(0);
-
-	memset(counting, 0, max + 1);
-
-	for (i = 0 ; i < size ; i++)
-	{
-		temp = array[i];
-		counting[temp]++;
-	}
-
-	temp = 0;
-	for (i = 0 ; (int) i <= max ; i++)
-	{
-
-		if (counting[i] != 0)
+		max = array[0];
+		for (i = 0 ; i < size ; i++)
 		{
-			array[temp] = i;
-			temp++;
+			if (array[i] > max)
+				max = array[i];
 		}
-		counting[i] = temp;
+
+		counting = malloc(sizeof(int) * (max + 1));
+		if (!counting)
+			exit(0);
+
+		memset(counting, 0, max + 1);
+
+		for (i = 0 ; i < size ; i++)
+		{
+			temp = array[i];
+			counting[temp]++;
+		}
+
+		temp = 0;
+		for (i = 0 ; (int) i <= max ; i++)
+		{
+
+			if (counting[i] != 0)
+			{
+				array[temp] = i;
+				temp++;
+			}
+			counting[i] = temp;
+		}
+		print_array(counting, max + 1);
+		free(counting);
 	}
-	print_array(counting, max + 1);
-	free(counting);
 }
