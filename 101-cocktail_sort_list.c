@@ -29,10 +29,13 @@ void cocktail_sort_list(listint_t **list)
 	listint_t *pointer;
 
 	pointer = *list;
-	while(checklist( *list) == 0)
+	if (list)
 	{
-		move_forward(list, &pointer);
-		move_backward(list, &pointer);
+		while(checklist( *list) == 0)
+		{
+			move_forward(list, &pointer);
+			move_backward(list, &pointer);
+		}
 	}
 }
 /**
