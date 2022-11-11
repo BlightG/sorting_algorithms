@@ -64,14 +64,14 @@ void quick_sort(int *array, size_t size)
 	int flag = 0;
 
 	i = 0;
-	while (i < size && size != 0)
+	while (i < size - 1 && size != 0)
 	{
 		if (array[i] > array[i + 1])
 			flag = 1;
 		i++;
 	}
 
-	if (array != NULL || size != 0 || flag != 0)
+	if (array != NULL && size != 0 && flag != 0)
 	{
 		start = 0;
 		end = size - 1;
