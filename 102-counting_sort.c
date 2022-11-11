@@ -12,9 +12,9 @@ void counting_sort(int *array, size_t size)
 	int *counting;
 
 	max = array[0];
-	for(i = 0 ; i < size ; i++)
+	for (i = 0 ; i < size ; i++)
 	{
-		if( array[i] > max)
+		if (array[i] > max)
 			max = array[i];
 	}
 
@@ -24,7 +24,7 @@ void counting_sort(int *array, size_t size)
 
 	memset(counting, 0, max + 1);
 
-	for(i = 0 ; i < size ; i++)
+	for (i = 0 ; i < size ; i++)
 	{
 		temp = array[i];
 		counting[temp]++;

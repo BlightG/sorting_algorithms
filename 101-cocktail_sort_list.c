@@ -2,9 +2,10 @@
 void move_forward(listint_t **, listint_t **);
 void move_backward(listint_t **, listint_t **);
 /**
- * 
+ * checklist - checkslist if a doubly linked list is sorted
  *
- *  
+ * @list: list to be checked
+ * Return: 0 if list is unsorted
 */
 int checklist(listint_t *);
 int checklist(listint_t *list)
@@ -12,7 +13,7 @@ int checklist(listint_t *list)
 	listint_t *location;
 
 	location = list;
-	while(location->next)
+	while (location->next)
 	{
 		if (location->next->n < location->n)
 			return (0);
@@ -21,8 +22,9 @@ int checklist(listint_t *list)
 	return (1);
 }
 /**
- * 
- * 
+ * cocktail_sort_list - doubly sided bubble sort
+ *
+ * @list: boubly linked list to be sorted
 */
 void cocktail_sort_list(listint_t **list)
 {
@@ -31,7 +33,7 @@ void cocktail_sort_list(listint_t **list)
 	pointer = *list;
 	if (list)
 	{
-		while(checklist( *list) == 0)
+		while (checklist(*list) == 0)
 		{
 			move_forward(list, &pointer);
 			move_backward(list, &pointer);
@@ -39,14 +41,17 @@ void cocktail_sort_list(listint_t **list)
 	}
 }
 /**
- * 
+ * move_forward - moves forwad while sorting on a list
+ *
+ * @list: list to be sorted
+ * @newpointer: pointer to a list
 */
 void move_forward(listint_t **list, listint_t **newpointer)
 {
 	listint_t *temp, *pointer;
 
 	pointer = *newpointer;
-	while(pointer->next)
+	while (pointer->next)
 	{
 		if (pointer->next->n < pointer->n)
 		{
@@ -73,7 +78,10 @@ void move_forward(listint_t **list, listint_t **newpointer)
 	*newpointer = pointer;
 }
 /**
- * 
+ * move_backward - moves forwad while sorting on a list
+ *
+ * @list: list to be sorted
+ * @newpointer: pointer to a list
 */
 void move_backward(listint_t **list, listint_t **newpointer)
 {
@@ -95,7 +103,7 @@ void move_backward(listint_t **list, listint_t **newpointer)
 				pointer->next->prev = temp;
 			if (!pointer->prev)
 				*list = pointer;
-			
+
 			temp->next = pointer->next;
 			pointer->next = temp;
 			print_list(*list);
@@ -103,5 +111,5 @@ void move_backward(listint_t **list, listint_t **newpointer)
 		else
 			pointer = pointer->prev;
 	}
-	*newpointer = pointer;	
+	*newpointer = pointer;
 }
