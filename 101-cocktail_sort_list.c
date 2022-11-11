@@ -31,9 +31,9 @@ void cocktail_sort_list(listint_t **list)
 {
 	listint_t *pointer;
 
-	pointer = *list;
 	if (list)
 	{
+		pointer = *list;
 		while (checklist(*list) == 0)
 		{
 			move_forward(list, &pointer);
