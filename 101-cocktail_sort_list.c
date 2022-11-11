@@ -1,14 +1,14 @@
 #include "sort.h"
 void move_forward(listint_t **, listint_t **);
 void move_backward(listint_t **, listint_t **);
+int checklist(listint_t *);
 /**
  * checklist - checkslist if a doubly linked list is sorted
  *
  *@list: list to be checked
- * 
+ *
  *Return: 0 if list is unsorted
 */
-int checklist(listint_t *);
 int checklist(listint_t *list)
 {
 	listint_t *location;
